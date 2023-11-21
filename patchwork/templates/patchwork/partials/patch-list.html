@@ -85,6 +85,12 @@ $(document).ready(function() {
 {% endif %}
         </th>
 
+{% if user.is_authenticated and user.profile.show_ids %}
+        <th>
+          Series&nbsp;ID
+        </th>
+{% endif %}
+
         <th>
           <span class="colinactive">Series</span>
         </th>
@@ -190,6 +196,15 @@ $(document).ready(function() {
             {{ patch.name|default:"[no subject]"|truncatechars:100 }}
           </a>
         </td>
+{% if user.is_authenticated and user.profile.show_ids %}
+        <td>
+{% if patch.series %}
+          <button type="button" class="btn btn-xs btn-copy" data-clipboard-text="{{ patch.series.id }}" title="Copy to Clipboard">
+            {{ patch.series.id }}
+          </button>
+{% endif %}
+        </td>
+{% endif %}
         <td>
 {% if patch.series %}
           <a href="?series={{patch.series.id}}">
