@@ -22,6 +22,10 @@
 
 <table id="patch-meta" class="patch-meta" data-submission-type={{submission|verbose_name_plural|lower}} data-submission-id={{submission.id}}>
   <tr>
+    <th>Labels</th>
+    <td>{{submission.labels.names | join:", "}}</td>
+  </tr>
+  <tr>
     <th>Message ID</th>
 {% if submission.list_archive_url %}
     <td>{{ submission.url_msgid }} (<a href="{{ submission.list_archive_url }}">mailing list archive</a>)</td>
