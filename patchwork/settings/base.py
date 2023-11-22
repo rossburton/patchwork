@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.staticfiles',
+    'taggit',
     'patchwork',
 ]
 
@@ -244,6 +245,12 @@ LOGGING = {
         },
     },
 }
+
+#
+# Taggit settings
+#
+
+TAGGIT_CASE_INSENSITIVE = True
 
 #
 # Patchwork settings
