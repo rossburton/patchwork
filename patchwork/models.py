@@ -18,6 +18,8 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.core.validators import validate_unicode_slug
 
+from taggit.managers import TaggableManager
+
 from patchwork.fields import HashField
 from patchwork.hasher import hash_diff
 
@@ -425,6 +427,8 @@ class SubmissionMixin(FilenameMixin, EmailMixin, models.Model):
     # submission metadata
 
     name = models.CharField(max_length=255)
+
+    labels = TaggableManager("Labels", blank=True)
 
     @cached_property
     def list_archive_url(self):
