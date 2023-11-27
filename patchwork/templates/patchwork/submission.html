@@ -23,7 +23,13 @@
 <table id="patch-meta" class="patch-meta" data-submission-type={{submission|verbose_name_plural|lower}} data-submission-id={{submission.id}}>
   <tr>
     <th>Labels</th>
-    <td>{{submission.labels.names | join:", "}}</td>
+    <td>
+      {{submission.labels.names | join:", "}}
+      <button id="toggle-patch-labels">expand</button>
+      <div id="patch-labels" class="patch-labels" style="display:none;">
+        <p>TODO labels</p>
+      </div>
+    </td>
   </tr>
   <tr>
     <th>Message ID</th>

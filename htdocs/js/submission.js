@@ -54,6 +54,10 @@ $( document ).ready(function() {
         toggleDiv("toggle-patch-series", "patch-series", "expand", "collapse");
     });
 
+    document.getElementById("toggle-patch-labels").addEventListener("click", function() {
+        toggleDiv("toggle-patch-labels", "patch-labels");
+    });
+
     // Click listener to show/hide related patches
     let related = document.getElementById("toggle-related");
     if (related) {
