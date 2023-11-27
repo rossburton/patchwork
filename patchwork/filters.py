@@ -321,6 +321,42 @@ class SearchFilter(Filter):
         )
 
 
+class LabelsFilter(Filter):
+    name = 'Labels'
+    param = 'labels'
+
+    def __init__(self, filters):
+        super().__init__(filters)
+        self.labels = None
+
+    @property
+    def condition(self):
+        return " ".join(self.labels)
+
+    @property
+    def key(self):
+        return self.labels
+
+    @key.setter
+    def key(self, key):
+        key = key.strip().split()
+        if not key:
+            return
+
+        self.labels = key
+        self.applied = True
+
+    @property
+    def kwargs(self):
+        return {'labels__name__in': self.labels}
+
+    @property
+    def form(self):
+        return mark_safe(
+            '<input name="%s" class="form-control" value="%s">'
+            % (self.param, escape(self.condition))
+        )
+
 class ArchiveFilter(Filter):
     name = 'Archived'
     param = 'archive'
@@ -516,6 +552,7 @@ FILTERS = [
     SubmitterFilter,
     StateFilter,
     SearchFilter,
+    LabelsFilter,
     ArchiveFilter,
     DelegateFilter,
 ]
