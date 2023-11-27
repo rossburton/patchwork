@@ -18,6 +18,7 @@ from patchwork.models import Bundle
 from patchwork.models import Cover
 from patchwork.models import Patch
 from patchwork.models import Project
+from taggit.models import Tag
 from patchwork.views import generic_list
 from patchwork.views.utils import patch_to_mbox
 from patchwork.views.utils import series_patch_to_mbox
@@ -147,6 +148,7 @@ def patch_detail(request, project_id, msgid):
     context['project'] = patch.project
     context['related_same_project'] = related_same_project
     context['related_different_project'] = related_different_project
+    context['labels'] = Tag.objects.all()
 
     return render(request, 'patchwork/submission.html', context)
 
